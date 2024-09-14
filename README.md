@@ -201,3 +201,28 @@ Stuxnet is widely considered the most significant and sophisticated malware ever
 - [The Industrial Control System Cyber Emergency Response Team (ICS-CERT)](https://ics-cert.us-cert.gov/)
 - [SANS ICS](https://ics.sans.org/)
 - [W32.Stuxnet Analysis](https://www.welivesecurity.com/2011/02/22/stuxnet-under-the-microscope/)
+  
+1. Crucial Industries ConFront Cyberattacks, McAfee and the Strategic And International Studies: In the Dark, 2011.
+2. David Albright, Paul Brannan, and Christina Walrond (Institute for Science and International Security): Did Stuxnet Take Out 1,000 Centrifuges at the Natanz Enrichment Plant?, December 22, 2010.
+3. Stuxnet: The computer virus that prevented and started the next world war. : The Why Files (youtube.com), March 4, 2021.
+4. Amr Thabet: Stuxnet Malware Analysis Paper.
+5. Risk and Resilience Team Center for Security Studies (CSS), ETH Zürich: Hotspot Analysis: Stuxnet, October 2017.
+6. Nicolas Falliere, Liam O Murchu, and Eric Chien: W32.Stuxnet Dossier (version 1.3), November 2010.
+7. Phillip Porras, Hassen Saidi, and Vinod Yegneswaran: An Analysis of Conficker's Logic and Rendezvous Points, February 4, 2009.
+8. Kaspersky Threats: WORM.WIN32.Stuxnet.
+9. ESET: Stuxnet Under Microscope.
+10. Geoff Chappell: The MRXCLS.SYS Malware Loader, October 21, 2010.
+
+## Terms and Their Meanings
+
+1. **Target**: Centrifuges used in the uranium enrichment process in a nuclear plant in Natanz in Iran.
+2. **Tool/Weapon**: Stuxnet: a worm using four zero-day vulnerabilities and infecting computer networks through USB flash drives.
+3. **Air-Gapped Network**: An air-gapped network is isolated from unsecured networks, meaning that it is not directly connected to the internet, nor is it connected to any other system that is connected to the internet. A true air-gapped computer is also physically isolated, meaning data can only be passed to it physically (i.e., via USB, removable media, or a firewire with another machine).
+4. **FEP**: Fuel Enrichment Plant.
+5. **SCADA Systems**: Supervisory Control And Data Acquisition systems.
+6. **Zero-Day Exploit/Vulnerabilities**: Security vulnerabilities of which software developers are not aware and which can be used to hack a system.
+7. **PLC**: Programmable Logic Controller.
+8. **DLL**: Dynamic Link Library.
+9. **P2P (Peer to Peer)**: In peer-to-peer (P2P) networking, a group of computers are linked together with equal permissions and responsibilities for processing data.
+10. **PE**: Portable Executable.
+11. **RPC**: Remote Procedure Call.
