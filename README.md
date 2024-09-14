@@ -228,3 +228,4 @@ Stuxnet is widely considered the most significant and sophisticated malware ever
 11. **RPC**                : Remote Procedure Call.
 
 - [Stuxnet Malware Analysis Paper](https://www.codeproject.com/Articles/246545/Stuxnet-Malware-Analysis-Paper)
+- [Dissecting the Stuxnet Malware: An Introduction to Forensic Analysis on Windows Machines](https://github.com/jaredthecoder/codestock2017-stuxnet-forensic-analysis/)
