@@ -1,7 +1,5 @@
 # Stuxnet Rootkit
 
-# Hotspot Analysis: Stuxnet
-
 ## Overview
 This repository contains a **comprehensive technical analysis** of **Stuxnet**, one of the most advanced and sophisticated pieces of malware ever identified. **Stuxnet** was designed as a precision weapon targeting industrial control systems (ICS), particularly those used in Iran’s nuclear enrichment program. This analysis dissects its architecture, payload, and the zero-day vulnerabilities it exploited to compromise systems running **Siemens Step7** PLC software. 
 
