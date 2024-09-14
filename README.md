@@ -7,7 +7,7 @@ This repository contains a **comprehensive technical analysis** of **Stuxnet**, 
 
 Stuxnet is notable for its use of multiple zero-day exploits and its highly specialized targeting of industrial equipment. Its discovery in 2010 marked a turning point in cybersecurity, revealing the potential for malware to cause physical damage and alter the course of geopolitical events.
 
-                            ![Stuxnet](https://github.com/user-attachments/assets/b2107289-6538-41fd-8cb0-2826e9d9b1b3)
+  ![Stuxnet](https://github.com/user-attachments/assets/b2107289-6538-41fd-8cb0-2826e9d9b1b3)
 
 ---
 
