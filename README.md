@@ -226,3 +226,5 @@ Stuxnet is widely considered the most significant and sophisticated malware ever
 9. **P2P (Peer to Peer)**: In peer-to-peer (P2P) networking, a group of computers are linked together with equal permissions and responsibilities for processing data.
 10. **PE**: Portable Executable.
 11. **RPC**: Remote Procedure Call.
+
+- [Stuxnet Malware Analysis Paper](https://www.codeproject.com/Articles/246545/Stuxnet-Malware-Analysis-Paper)
